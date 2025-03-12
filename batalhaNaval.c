@@ -1,27 +1,45 @@
 #include <stdio.h>
 
+void aplicarHabilidade(int tabuleiro[10][10], int habilidade[3][5], int x, int y) {
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 5; j++) {
+            if (habilidade[i][j] == 1) {
+                tabuleiro[x + i][y + j] = 1;
+            }
+        }
+    }
+}
+
 int main() {
-    // Nível Aventureiro - Expansão do Tabuleiro e Posicionamento Diagonal
+    // Nível Mestre - Habilidades Especiais com Matrizes
     int tabuleiro[10][10] = {0}; // Inicializa o tabuleiro 10x10 com 0
 
-    // Posiciona navios horizontais
-    for (int j = 1; j <= 3; j++) {
-        tabuleiro[2][j] = 3;
-        tabuleiro[5][j + 4] = 3;
-    }
+    // Matrizes de habilidades
+    int cone[3][5] = {
+        {0, 0, 1, 0, 0},
+        {0, 1, 1, 1, 0},
+        {1, 1, 1, 1, 1}
+    };
 
-    // Posiciona navio vertical
-    for (int i = 3; i <= 6; i++) {
-        tabuleiro[i][7] = 3;
-    }
+    int cruz[3][5] = {
+        {0, 0, 1, 0, 0},
+        {1, 1, 1, 1, 1},
+        {0, 0, 1, 0, 0}
+    };
 
-    // Posiciona navio na diagonal
-    for (int i = 0; i < 4; i++) {
-        tabuleiro[i + 6][i + 1] = 3;
-    }
+    int octaedro[3][5] = {
+        {0, 0, 1, 0, 0},
+        {0, 1, 1, 1, 0},
+        {0, 0, 1, 0, 0}
+    };
 
-    // Exibe o tabuleiro completo
-    printf("Tabuleiro 10x10:\n");
+    // Aplica as habilidades no tabuleiro
+    aplicarHabilidade(tabuleiro, cone, 1, 2);
+    aplicarHabilidade(tabuleiro, cruz, 4, 3);
+    aplicarHabilidade(tabuleiro, octaedro, 7, 1);
+
+    // Exibe o tabuleiro com as áreas afetadas
+    printf("Tabuleiro com habilidades especiais:\n");
     for (int i = 0; i < 10; i++) {
         for (int j = 0; j < 10; j++) {
             printf("%d ", tabuleiro[i][j]);
