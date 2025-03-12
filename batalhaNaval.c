@@ -1,27 +1,32 @@
 #include <stdio.h>
 
 int main() {
-    // Nível Novato - Posicionamento dos Navios
-    int tabuleiro[5][5] = {0}; // Inicializa o tabuleiro com 0
+    // Nível Aventureiro - Expansão do Tabuleiro e Posicionamento Diagonal
+    int tabuleiro[10][10] = {0}; // Inicializa o tabuleiro 10x10 com 0
 
-    // Posiciona navio horizontalmente
-    tabuleiro[1][1] = 1;
-    tabuleiro[1][2] = 1;
-    tabuleiro[1][3] = 1;
+    // Posiciona navios horizontais
+    for (int j = 1; j <= 3; j++) {
+        tabuleiro[2][j] = 3;
+        tabuleiro[5][j + 4] = 3;
+    }
 
-    // Posiciona navio verticalmente
-    tabuleiro[2][2] = 1;
-    tabuleiro[3][2] = 1;
-    tabuleiro[4][2] = 1;
+    // Posiciona navio vertical
+    for (int i = 3; i <= 6; i++) {
+        tabuleiro[i][7] = 3;
+    }
 
-    // Exibe as coordenadas dos navios
-    printf("Coordenadas dos navios:\n");
-    for (int i = 0; i < 5; i++) {
-        for (int j = 0; j < 5; j++) {
-            if (tabuleiro[i][j] == 1) {
-                printf("Navio na posicao: [%d][%d]\n", i, j);
-            }
+    // Posiciona navio na diagonal
+    for (int i = 0; i < 4; i++) {
+        tabuleiro[i + 6][i + 1] = 3;
+    }
+
+    // Exibe o tabuleiro completo
+    printf("Tabuleiro 10x10:\n");
+    for (int i = 0; i < 10; i++) {
+        for (int j = 0; j < 10; j++) {
+            printf("%d ", tabuleiro[i][j]);
         }
+        printf("\n");
     }
 
     return 0;
